@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "place_id": {
+      "type": "integer"
+    },
+    "licence": {
+      "type": "string"
+    },
+    "osm_type": {
+      "type": "string"
+    },
+    "osm_id": {
+      "type": "integer"
+    },
+    "boundingbox": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lat": {
+      "type": "string"
+    },
+    "lon": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "class": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "importance": {
+      "type": "number"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "state_district": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "ISO3166-2-lvl4": {
+          "type": "string"
+        },
+        "postcode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city",
+        "postcode",
+        "country",
+        "country_code"
+      ]
+    }
+  },
+  "required": [
+    "place_id",
+    "licence",
+    "osm_type",
+    "osm_id",
+    "boundingbox",
+    "lat",
+    "lon",
+    "display_name",
+    "address"
+  ]
+}

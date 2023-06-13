@@ -1,0 +1,146 @@
+{
+  "url": "https://nominatim.openstreetmap.org/search",
+  "valid_cases": [
+    {
+      "req_params": {
+        "q": "350 5th Avenue, New York",
+        "format": "json"
+      },
+      "expected": {
+        "lat": 40.74846,
+        "lon": -73.98566,
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "street": "60 Большой Сампсониевский проспект",
+        "city": "Санкт-Петербург",
+        "country": "Россия",
+        "format": "json",
+        "accept-language": "ru"
+      },
+      "expected": {
+        "lat": 59.97415,
+        "lon": 30.33818,
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "street": "Елисейские поля",
+        "country": "Франция",
+        "format": "json",
+        "accept-language": "ru"
+      },
+      "expected": {
+        "lat": 48.8683,
+        "lon": 2.3122,
+        "rel_tol": 1e-2
+      }
+    },
+    {
+      "req_params": {
+        "street": "Столярный пер, 9",
+        "city": "Петербург",
+        "format": "json",
+        "accept-language": "ru"
+      },
+      "expected": {
+        "lat": 59.92708,
+        "lon": 30.31160,
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "street": "天安門廣場",
+        "format": "json",
+        "accept-language": "ru"
+      },
+      "expected": {
+        "lat": 39.9025,
+        "lon": 116.3916,
+        "rel_tol": 1e-3
+      }
+    }
+  ],
+  "invalid_fields_cases": [
+    {
+      "req_params": {
+        "q": "Baker street",
+        "format": "aaa"
+      },
+      "expected": {
+        "code": 400,
+        "message": "Parameter 'format' must be one of: xml, json, jsonv2, geojson, geocodejson"
+      }
+    },
+    {
+      "req_params": {
+        "q": "Красный проспект",
+        "format": "json",
+        "limit": "bbb"
+      },
+      "expected": {
+        "code": 400,
+        "message": "Integer number expected for parameter 'limit'"
+      }
+    },
+    {
+      "req_params": {
+        "q": "Москва",
+        "format": "json",
+        "viewbox": "ссс"
+      },
+      "expected": {
+        "code": 400,
+        "message": "Bad parameter 'viewbox'. Expected 4 coordinates."
+      }
+    },
+    {
+      "req_params": {
+        "q": "Пекин",
+        "format": "json",
+        "viewbox": "55, 37, 55, 37"
+      },
+      "expected": {
+        "code": 400,
+        "message": "Bad parameter 'viewbox'. Not a box."
+      }
+    },
+    {
+      "req_params": {
+        "q": "Минск",
+        "format": "json",
+        "polygon_threshold": "ddd"
+      },
+      "expected": {
+        "code": 400,
+        "message": "Floating-point number expected for parameter 'polygon_threshold'"
+      }
+    }
+  ],
+  "too_large_params_cases": [
+    {
+      "req_params": {
+        "q": {"len" : 10000}
+      }
+    },
+    {
+      "req_params": {
+        "street": {"len" : 3000},
+        "city": {"len" : 3000},
+        "country": {"len" : 3000}
+      }
+    },
+        {
+      "req_params": {
+        "street": {"len" : 2500},
+        "city": {"len" : 2500},
+        "country": {"len" : 2500},
+        "format" : {"len" : 2500}
+      }
+    }
+  ]
+}

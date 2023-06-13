@@ -1,0 +1,230 @@
+{
+  "url": "https://nominatim.openstreetmap.org/reverse",
+  "valid_cases": [
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 55.7515,
+        "lon": 37.6182,
+        "accept-language": "ru"
+      },
+      "expected": {
+        "display_name": "Московский Кремль",
+        "city": "Москва",
+        "country": "Россия",
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 59.9502,
+        "lon": 30.3164,
+        "accept-language": "ru"
+      },
+      "expected": {
+        "display_name": "Петропавловский собор",
+        "city": "Санкт-Петербург",
+        "country": "Россия",
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 51.5087,
+        "lon": -0.0762,
+        "accept-language": "ru"
+      },
+      "expected": {
+        "display_name": "Тауэр",
+        "city": "Лондон",
+        "country": "Великобритания",
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 41.89053,
+        "lon": 12.49243,
+        "accept-language": "ru"
+      },
+      "expected": {
+        "display_name": "Колизей",
+        "city": "Рим",
+        "country": "Италия",
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 48.86112,
+        "lon": 2.33788,
+        "accept-language": "ru"
+      },
+      "expected": {
+        "display_name": "Лувр",
+        "city": "Париж",
+        "country": "Франция",
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 52.51631,
+        "lon": 13.37769,
+        "accept-language": "ru"
+      },
+      "expected": {
+        "display_name": "Бранденбургские ворота",
+        "city": "Берлин",
+        "country": "Германия",
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 41.40350,
+        "lon": 2.17441,
+        "accept-language": "ru"
+      },
+      "expected": {
+        "display_name": "Храм Святого Семейства",
+        "city": "Барселона",
+        "country": "Испания",
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 41.00855,
+        "lon": 28.97999,
+        "accept-language": "ru"
+      },
+      "expected": {
+        "display_name": "Собор Святой Софии",
+        "city": "Стамбул",
+        "country": "Турция",
+        "rel_tol": 1e-3
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 27.17504,
+        "lon": 78.04206,
+        "accept-language": "ru"
+      },
+      "expected": {
+        "display_name": "Тадж-Махал",
+        "city": "Агра",
+        "country": "Индия",
+        "rel_tol": 1e-3
+      }
+    }
+  ],
+  "no_required_fields_cases": [
+    {
+      "req_params": {
+        "format": "json"
+      },
+      "expected": {
+        "code": 400,
+        "message": "Need coordinates or OSM object to lookup."
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 50.00
+      },
+      "expected": {
+        "code": 400,
+        "message": "Need coordinates or OSM object to lookup."
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lon": 50.00
+      },
+      "expected": {
+        "code": 400,
+        "message": "Need coordinates or OSM object to lookup."
+      }
+    }
+  ],
+  "invalid_fields_cases": [
+    {
+      "req_params": {
+        "format": "json",
+        "lat": "aaa",
+        "lon": "bbb"
+      },
+      "expected": {
+        "code": 400,
+        "message": "Floating-point number expected for parameter 'lat'"
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": 50.0,
+        "lon": "bbb"
+      },
+      "expected": {
+        "code": 400,
+        "message": "Floating-point number expected for parameter 'lon'"
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": "aaa",
+        "lon": 50.0
+      },
+      "expected": {
+        "code": 400,
+        "message": "Floating-point number expected for parameter 'lat'"
+      }
+    },
+    {
+      "req_params": {
+        "format": "json",
+        "lat": "50/2",
+        "lon": "50/3"
+      },
+      "expected": {
+        "code": 400,
+        "message": "Floating-point number expected for parameter 'lat'"
+      }
+    }
+  ],
+  "too_large_params_cases": [
+    {
+      "req_params": {
+        "lat": {
+          "len": 10000
+        },
+        "lon": {
+          "len": 2
+        }
+      }
+    },
+    {
+      "req_params": {
+        "lat": {
+          "len": 5000
+        },
+        "lon": {
+          "len": 5000
+        }
+      }
+    }
+  ]
+}
